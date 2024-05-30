@@ -32,6 +32,8 @@ class Calculator implements ActionListener {
     JButton buttonMinus = new JButton("-");
 
     JButton button_off = new JButton("Off");
+    JButton button_on = new JButton("on");
+    JButton button_pow= new JButton("^");
 
 
     Color yellow = new Color(255, 209, 102);
@@ -126,11 +128,17 @@ class Calculator implements ActionListener {
         buttonDiv.setForeground(Color.white);
         fram.add(buttonDiv);
 
-        buttonEqual.setBounds(250, 330, 70, 110);
+        buttonEqual.setBounds(250, 390, 70, 50);
         buttonEqual.setFont(new Font("Arial", Font.BOLD, 20));
         buttonEqual.setBackground(Color.DARK_GRAY);
         buttonEqual.setForeground(Color.white);
         fram.add(buttonEqual);
+
+        button_pow.setBounds(250, 330, 70, 50);
+        button_pow.setFont(new Font("Arial", Font.BOLD, 20));
+        button_pow.setBackground(Color.DARK_GRAY);
+        button_pow.setForeground(Color.white);
+        fram.add(button_pow);
 
         buttonMinus.setBounds(250, 210, 70, 50);
         buttonMinus.setFont(new Font("Arial", Font.BOLD, 20));
@@ -144,22 +152,28 @@ class Calculator implements ActionListener {
         buttonPlus.setForeground(Color.white);
         fram.add(buttonPlus);
 
-        button_off.setBounds(10, 150, 70, 50);
-        button_off.setFont(new Font("Arial", Font.BOLD, 20));
+        button_off.setBounds(10, 150, 70, 25);
+        button_off.setFont(new Font("Arial", Font.BOLD, 15));
         button_off.setBackground(Color.DARK_GRAY);
-        button_off.setForeground(Color.RED);
+        button_off.setForeground(Color.pink);
         fram.add(button_off);
+
+        button_on.setBounds(10, 178, 70, 25);
+        button_on.setFont(new Font("Arial", Font.BOLD, 15));
+        button_on.setBackground(Color.DARK_GRAY);
+        button_on.setForeground(Color.pink);
+        fram.add(button_on);
 
         buttonClear.setBounds(90, 150, 70, 50);
         buttonClear.setFont(new Font("Arial", Font.BOLD, 20));
         buttonClear.setBackground(Color.DARK_GRAY);
-        buttonClear.setForeground(Color.RED);
+        buttonClear.setForeground(Color.white);
         fram.add(buttonClear);
 
         buttonDelete.setBounds(170, 150, 70, 50);
         buttonDelete.setFont(new Font("Arial", Font.BOLD, 20));
         buttonDelete.setBackground(Color.DARK_GRAY);
-        buttonDelete.setForeground(Color.RED);
+        buttonDelete.setForeground(Color.white);
         fram.add(buttonDelete);
 
         buttonMul.setBounds(250, 150, 70, 50);
@@ -174,10 +188,16 @@ class Calculator implements ActionListener {
         write.setBackground(Color.BLACK);
         fram.add(write);
 
+        JLabel Another_write = new JLabel("f(x)~100MS ");
+        Another_write.setBounds(220,3,110,40);
+        Another_write.setFont(new Font("Arial",Font.ITALIC,20));
+        Another_write.setBackground(Color.BLACK);
+        fram.add(Another_write);
 
         buttonDelete.addActionListener(this);
         buttonClear.addActionListener(this);
         button_off.addActionListener(this);
+        button_on.addActionListener(this);
         buttonMul.addActionListener(this);
 
         buttonMinus.addActionListener(this);
@@ -190,11 +210,12 @@ class Calculator implements ActionListener {
         buttonFive.addActionListener(this);
         buttonFour.addActionListener(this);
 
-        buttonEqual.addActionListener(this);
+        button_pow.addActionListener(this);
         buttonThree.addActionListener(this);
         buttonTwo.addActionListener(this);
         buttonOne.addActionListener(this);
 
+        buttonEqual.addActionListener(this);
         buttonZero.addActionListener(this);
         buttonDot.addActionListener(this);
         buttonDiv.addActionListener(this);
@@ -206,7 +227,9 @@ class Calculator implements ActionListener {
         Object source = e.getSource();
         if (source == button_off) {
             disable();
-        } else if (source == buttonClear) {
+        }else if(source==button_on){
+            Active_Button();
+        }else if(source == buttonClear) {
             textField.setText("");
         } else if (source == buttonDelete) {
             int length = textField.getText().length();
@@ -233,7 +256,7 @@ class Calculator implements ActionListener {
                 textField.setText(textField.getText() + "0");
             }
         }
-        else if(source==buttonPlus || source==buttonMinus || source==buttonMul || source==buttonDiv){
+        else if(source==buttonPlus || source==buttonMinus || source==buttonMul || source==buttonDiv ||source==button_pow){
             String str = textField.getText();
             number = Double.parseDouble(str);
             textField.setText("");
@@ -246,6 +269,8 @@ class Calculator implements ActionListener {
                 calculation = 3;
             } else if (source == buttonDiv) {
                 calculation = 4;
+            } else if(source == button_pow){
+                calculation=5;
             }
         } else if (source==buttonEqual) {
             switch (calculation){
@@ -261,6 +286,8 @@ class Calculator implements ActionListener {
                 case 4:
                     calculateAndSetText(number, 4);
                     break;
+                case 5:
+                    calculateAndSetText(number,5);
             }
         }
 
@@ -278,6 +305,9 @@ class Calculator implements ActionListener {
                 break;
             case 4:
                 answer = number/Double.parseDouble(textField.getText());
+                break;
+            case 5:
+                answer = Math.pow(number, Double.parseDouble(textField.getText()));
                 break;
         }
         String answerString = Double.toString(answer);
@@ -306,6 +336,31 @@ class Calculator implements ActionListener {
         buttonZero.setEnabled(false);
         buttonDot.setEnabled(false);
     }
+
+    public void Active_Button() {
+        textField.setText("");
+        buttonClear.setEnabled(true);
+        buttonDelete.setEnabled(true);
+        buttonDiv.setEnabled(true);
+        buttonMinus.setEnabled(true);
+        buttonSeven.setEnabled(true);
+        buttonEight.setEnabled(true);
+        buttonNine.setEnabled(true);
+        buttonMul.setEnabled(true);
+        buttonFour.setEnabled(true);
+        buttonFive.setEnabled(true);
+        buttonSix.setEnabled(true);
+        buttonPlus.setEnabled(true);
+        buttonOne.setEnabled(true);
+        buttonTwo.setEnabled(true);
+        buttonThree.setEnabled(true);
+        buttonEqual.setEnabled(true);
+        buttonZero.setEnabled(true);
+        buttonDot.setEnabled(true);
+        button_pow.setEnabled(true);
+        button_off.setEnabled(true);
+    }
+
 }
 
 public class Main {
