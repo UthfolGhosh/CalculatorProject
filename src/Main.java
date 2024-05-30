@@ -224,9 +224,11 @@ class Calculator implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source == button_off) {
-            disable();
+            textField.setText("");
+            setButtonsStatus(false);
         }else if(source==button_on){
-            Active_Button();
+            textField.setText("");
+            setButtonsStatus(true);
         }else if(source == buttonClear) {
             textField.setText("");
         } else if (source == buttonDelete) {
@@ -312,53 +314,28 @@ class Calculator implements ActionListener {
         textField.setText(answerString.endsWith(".0") ? answerString.replace(".0", "") : answerString);
     }
 
-
-    public void disable(){
-        textField.setText("");
-        buttonClear.setEnabled(false);
-        buttonDelete.setEnabled(false);
-        buttonDiv.setEnabled(false);
-        buttonMinus.setEnabled(false);
-        buttonSeven.setEnabled(false);
-        buttonEight.setEnabled(false);
-        buttonNine.setEnabled(false);
-        buttonMul.setEnabled(false);
-        buttonFour.setEnabled(false);
-        buttonFive.setEnabled(false);
-        buttonSix.setEnabled(false);
-        buttonPlus.setEnabled(false);
-        buttonOne.setEnabled(false);
-        buttonTwo.setEnabled(false);
-        buttonThree.setEnabled(false);
-        buttonEqual.setEnabled(false);
-        buttonZero.setEnabled(false);
-        buttonDot.setEnabled(false);
+    private void setButtonsStatus(boolean enabled) {
+        buttonClear.setEnabled(enabled);
+        buttonDelete.setEnabled(enabled);
+        buttonDiv.setEnabled(enabled);
+        buttonMinus.setEnabled(enabled);
+        buttonSeven.setEnabled(enabled);
+        buttonEight.setEnabled(enabled);
+        buttonNine.setEnabled(enabled);
+        buttonMul.setEnabled(enabled);
+        buttonFour.setEnabled(enabled);
+        buttonFive.setEnabled(enabled);
+        buttonSix.setEnabled(enabled);
+        buttonPlus.setEnabled(enabled);
+        buttonOne.setEnabled(enabled);
+        buttonTwo.setEnabled(enabled);
+        buttonThree.setEnabled(enabled);
+        buttonEqual.setEnabled(enabled);
+        buttonZero.setEnabled(enabled);
+        buttonDot.setEnabled(enabled);
+        button_pow.setEnabled(enabled);
+        button_off.setEnabled(enabled);
     }
-
-    public void Active_Button() {
-        textField.setText("");
-        buttonClear.setEnabled(true);
-        buttonDelete.setEnabled(true);
-        buttonDiv.setEnabled(true);
-        buttonMinus.setEnabled(true);
-        buttonSeven.setEnabled(true);
-        buttonEight.setEnabled(true);
-        buttonNine.setEnabled(true);
-        buttonMul.setEnabled(true);
-        buttonFour.setEnabled(true);
-        buttonFive.setEnabled(true);
-        buttonSix.setEnabled(true);
-        buttonPlus.setEnabled(true);
-        buttonOne.setEnabled(true);
-        buttonTwo.setEnabled(true);
-        buttonThree.setEnabled(true);
-        buttonEqual.setEnabled(true);
-        buttonZero.setEnabled(true);
-        buttonDot.setEnabled(true);
-        button_pow.setEnabled(true);
-        button_off.setEnabled(true);
-    }
-
 }
 
 public class Main {
