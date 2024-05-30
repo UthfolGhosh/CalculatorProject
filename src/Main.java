@@ -1,5 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -153,13 +151,13 @@ class Calculator implements ActionListener {
         fram.add(buttonPlus);
 
         button_off.setBounds(10, 150, 70, 25);
-        button_off.setFont(new Font("Arial", Font.BOLD, 15));
+        button_off.setFont(new Font("Arial", Font.ITALIC, 15));
         button_off.setBackground(Color.DARK_GRAY);
         button_off.setForeground(Color.pink);
         fram.add(button_off);
 
         button_on.setBounds(10, 178, 70, 25);
-        button_on.setFont(new Font("Arial", Font.BOLD, 15));
+        button_on.setFont(new Font("Arial", Font.ITALIC, 15));
         button_on.setBackground(Color.DARK_GRAY);
         button_on.setForeground(Color.pink);
         fram.add(button_on);
